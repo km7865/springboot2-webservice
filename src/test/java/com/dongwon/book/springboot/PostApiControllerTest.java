@@ -22,7 +22,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class PostApiControllerTest {
 
@@ -84,7 +83,7 @@ public class PostApiControllerTest {
                 .build();
 
         String url = "http://localhost:" + port + "/api/v1/posts/" + updateId;
-        HttpEntity< PostsUpdateRequestDto> requestDtoHttpEntity =
+        HttpEntity<PostsUpdateRequestDto> requestDtoHttpEntity =
                 new HttpEntity<>(requestDto);
 
         //when
@@ -100,6 +99,24 @@ public class PostApiControllerTest {
     }
 
     @Test
-    public void Posts_조회된다() throws Exception {
+    public void Posts_삭제된다() throws Exception {
+        //given
+        Posts savedPosts = postsRepository.save(Posts.builder()
+                .title("title")
+                .content("content")
+                .author("adfs")
+                .build());
+
+        Long deletedId = savedPosts.getId();
+
+        String url = "http://localhost:" + port + "/api/v1/posts/" + deletedId;
+
+        //when
+        restTemplate.delete(url);
+
+        //then
+        List<Posts> all = postsRepository.findAll();
+
+        assertThat(all.size()).isEqualTo(0);
     }
 }
