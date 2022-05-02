@@ -1,5 +1,6 @@
 package com.dongwon.book.springboot.config.auth;
 
+import com.dongwon.book.springboot.config.auth.dto.OAuthAttributes;
 import com.dongwon.book.springboot.config.auth.dto.SessionUser;
 import com.dongwon.book.springboot.domain.user.User;
 import com.dongwon.book.springboot.domain.user.UserRepository;
