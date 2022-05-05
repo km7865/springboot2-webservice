@@ -64,8 +64,8 @@ public class PostApiControllerTest {
     @WithMockUser(roles="USER")
     public void Posts_등록된다() throws Exception {
         //given
-        String title = "title";
-        String content = "content";
+        String title = "title1";
+        String content = "content1";
         PostsSaveRequestDto requestDto = PostsSaveRequestDto.builder()
                 .title(title)
                 .content(content)
