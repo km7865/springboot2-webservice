@@ -29,6 +29,8 @@ dependencies {
     implementation('org.springframework.security:spring-security-test')
 
     implementation('com.h2database:h2')
+    implementation('org.mariadb.jdbc:mariadb-java-client')
+
     compileOnly('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
 }
