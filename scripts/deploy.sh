@@ -24,15 +24,15 @@ echo "> Deploy new application."
 
 JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
-echo "> Jar name: $JARP_NAME."
+echo "> Jar name: $JAR_NAME."
 
 echo "> Give execution permission to $JAR_NAME."
 
-chmod +x "$JAR_NAME"
+chmod +x $JAR_NAME
 
 echo "> Execute $JAR_NAME."
 
 nohup java -jar \
     -Dspring.config.location=classpath:/application.properties,classpath:/ap    plication-real.properties,/home/ec2-user/app/application-oauth.properties,/h    ome/ec2-user/app/application-real-db.properties \
     -Dspring.profiles.active=real \
-    "$JAR_NAME" > $REPOSITORY/nohup.out 2>&1 &
+    $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
