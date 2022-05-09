@@ -18,7 +18,7 @@ before_install:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r dongwon-springboot2-webservice
+  - zip -r dongwon-springboot2-webservice *
   - mkdir -p deploy
   - mv dongwon-springboot2-webservice.zip deploy/dongwon-springboot2-webservice.zip
 
