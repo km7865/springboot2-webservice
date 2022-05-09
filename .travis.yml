@@ -12,10 +12,26 @@ cache:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
-script: "./gradlew clean build"
-
 before_install:
   - chmod +x gradlew
+
+script: "./gradlew clean build"
+
+before_deploy:
+  - zip -r dongwon-springboot2-webservice
+  - mkdir -p deploy
+  - mv dongwon-springboot2-webservice.zip deploy/dongwon-springboot2-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis setting
+    secret_access_key: $AWS_SECRET_KEY # Travis setting
+    bucket: dongwon-springboot-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private # zip file access private
+    local_dir: deploy
+    wait-until-deployed: true
 
 # After CI executing alarm via email
 notifications:
