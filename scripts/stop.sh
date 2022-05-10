@@ -14,6 +14,6 @@ then
   echo "> Application doesn't exist."
 else
   echo "> kill -15 $IDLE_PID"
-  kill -15 $IDLE_PID"
+  kill -15 "$IDLE_PID"
   sleep 5
 fi
